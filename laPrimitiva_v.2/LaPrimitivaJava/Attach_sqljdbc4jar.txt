@@ -1,0 +1,14 @@
+TODO ESTO NO HACE FALTA, SE SOLUCIONO SOLO AL ORDENAR LOS METODOS ¿?
+
+A .jar file usually only contains the .class files, not the .java files they were compiled from. That's why eclipse is telling you it doesn't know the source code of that class.
+
+"Attaching" the source to a JAR means telling eclipse where the source code can be found. Of course, if you don't know yourself, that feature is of little help. Of course, you could try googling for the source code (or check wherever you got the JAR file from).
+
+That said, you don't necessarily need the source to debug.
+
+Para hacer el attach, poner la carpeta del Driver dentro del proyecto, para que el Path no varie
+ir a Java perspective, click derecho sobre la libreria-->Propiedades
+Se abre ventana Java Source Attachment, ahi ponemos el Path donde esta el archivo
+lo malo es que va sin relative Path (he puesto la ruta completa, aunque pordria poner relativa?)
+
+http://stackoverflow.com/questions/15180411/attach-the-source-in-eclipse-of-a-jar

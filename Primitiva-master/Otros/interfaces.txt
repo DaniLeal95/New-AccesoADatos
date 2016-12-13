@@ -1,0 +1,31 @@
+Nombre: GrabaSencilla
+Descripcion: Guarda una apuesta simple en la base de datos
+Precondiciones:
+Postcondiciones: El boleto queda guardado en las tablas Boletos y Numeros
+Entradas: El sorteo y los seis números
+Salidas:
+Entradas/Salidas:
+
+Nombre: GrabaMuchasSencillas
+Descripcion: Genera n boletos con una apuesta sencilla
+Precondiciones:
+Postcondiciones: Los n boletos quedan guardados en las tablas Boletos y Numeros
+Entradas: El sorteo y los seis números
+Salidas:
+Entradas/Salidas:
+
+Nombre: GrabaMultiple
+Descripcion: Guarda una apuesta multiple en la base de datos
+Precondiciones:
+Postcondiciones: El boleto queda guardado en las tablas Boletos y Numeros
+Entradas: El sorteo y entre 5 y 11 números
+Salidas:
+Entradas/Salidas:
+
+Nombre: GeneraReintegro
+Descripcion: Genera un numero entre 1 y 9
+Precondiciones:
+Postcondiciones: Devuelve un numero aleatorio entre 1 y 9
+Entradas:
+Salidas: Entero entre 1 y 9
+Entradas/Salidas:

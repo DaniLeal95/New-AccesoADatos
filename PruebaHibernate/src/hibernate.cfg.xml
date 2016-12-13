@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="SqlConnection">
+        <property name="hibernate.connection.driver_class">com.microsoft.jdbc.sqlserver.SQLServerDriver</property>
+        <property name="hibernate.connection.password">passw</property>
+        <property name="hibernate.connection.url">jdbc:microsoft:sqlserver://192.168.0.169;DatabaseName=Loteria</property>
+        <property name="hibernate.connection.username">userLoteria</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        
+    </session-factory>
+</hibernate-configuration>

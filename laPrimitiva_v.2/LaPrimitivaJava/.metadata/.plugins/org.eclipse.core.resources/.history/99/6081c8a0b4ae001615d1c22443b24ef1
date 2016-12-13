@@ -1,0 +1,62 @@
+/*
+ METODOS
+ insertarBoleto
+ generarBoleto
+ comprobarAciertosBoleto
+ insertarSorteo usar ResultSet
+ */
+
+package Gestion;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class gestLaPrimitiva {
+
+	public gestLaPrimitiva(){}
+	/* void insertarBoleto(Statement sentencia,java.sql.Timestamp fechaHora)
+	 
+	  usa GrabaMuchasSencillas (smalldatetime fecha,int cantidad)
+	  Procedimiento: utiliza el procedimiento almacenado GrabaMuchasSencillas pasandole como parametro una fecha de sorteo
+	   				y el numero 1, ya que solo vamos a generar un boleto
+	  Entrada: Statement con la conexion abierta / fecha y hora del sorteo
+	  Salida: numero de filas afectadas
+	 */
+	 public void insertarBoleto(Statement sentencia, java.sql.Timestamp fechaHora) throws SQLException{
+		 
+		 ResultSet idSorteo;
+		 String ordenSelect = "select idSorteo from SORTEOS where fechaSorteo='2016-12-28 00:00:00' ";	//fechaHora.toString().substring(0, 19);
+		 idSorteo = sentencia.executeQuery(ordenSelect);
+		 
+		  
+		 String ordenInsertar = "EXECUTE GrabaMuchasSencillas "+idSorteo+", 1";
+		 sentencia.executeQuery(ordenInsertar); //puede esto devolver algo que no sea resulset para verificar que se inserto??
+	 }
+	/* void insertarSorteo(Statement sentencia, java.sql.Timestamp fechaHora, int num1, int num2, int num3, int num4, int num5,int num6, int complementario, int reintegro)
+	 
+	  Procedimiento: inserta un Sorteo en la BD utilizando Resultset
+	  Entrada: Statement con la conexion abierta / fecha y hora del sorteo / numeros del sorteo
+	  Salida: nueva fila en la BD
+	 */
+	 public void insertarSorteo(Statement sentencia, java.sql.Timestamp fechaHora, int num1, int num2, int num3, int num4, int num5,int num6, int complementario, int reintegro) throws SQLException{
+		 
+		 ResultSet rsSorteos;
+		 String ordenSelect = "select * from SORTEOS";
+		 rsSorteos = sentencia.executeQuery(ordenSelect);
+		 
+		// rsSorteos.afterLast();
+		// rsSorteos.insertRow();
+		 	rsSorteos.moveToInsertRow(); //no he puesto id xq es identity, seria la colum 0 o la 1??
+		 	rsSorteos.updateTimestamp("fechaSorteo", fechaHora);
+			rsSorteos.updateInt("num1", num1);
+			rsSorteos.updateInt("num2", num2);
+			rsSorteos.updateInt("num3", num3);
+			rsSorteos.updateInt("num4", num4);
+			rsSorteos.updateInt("num5", num5);
+			rsSorteos.updateInt("num6", num6);
+			rsSorteos.updateInt("complementario", complementario);
+			rsSorteos.updateInt("reintegroSorteo", reintegro);
+	 }
+	 
+}

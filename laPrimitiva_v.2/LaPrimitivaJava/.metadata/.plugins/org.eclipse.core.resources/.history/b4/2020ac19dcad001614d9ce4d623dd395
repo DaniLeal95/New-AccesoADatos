@@ -1,0 +1,59 @@
+/*
+ 
+ Solicitar usuario y contraseña
+ Ofrecer un menu con las opciones :
+  Insertar sorteo
+  Insertar boleto
+  Generar boleto
+  Comprobar si boleto premiado
+  
+  
+  Pseudocodigo
+  	Inicio
+  		desea entrar en el programa
+  		mientras(desee entrar)
+  			solicitar y leer usuario y contraseña
+  			comprobar usuario en BD
+  			
+  			mientras(usuario y contraseña correctos Y desee realizar accion)
+  				Mostrar y validar menu gestor
+  				segun(opcion)
+					caso 1: Insertar boleto
+					caso 2: Generar boleto
+					caso 3: Comprobar si boleto premiado
+					caso 4: Insertar sorteo
+						si(usuario y contraseña NO gestorBD)
+							Denegar acceso
+						sino
+							Insertar sorteo
+				desea realizar otra accion
+			fin mientras
+  		desea continuar en el programa
+  		fin mientras(desee entrar)
+  	Fin
+  
+  Necesito una tabla de usuarios, contraseñas y categoria para saber quien es gerente o empleado 
+ 
+ */
+
+package Main;
+
+import java.sql.Statement;
+
+import Clases.Conexion;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String user = "";
+		String password = "";
+		
+		
+		
+		Conexion conexionLocal = new Conexion(user,password);
+		Statement sentencia = conexionLocal.conectarBD();
+
+		
+	}
+
+}

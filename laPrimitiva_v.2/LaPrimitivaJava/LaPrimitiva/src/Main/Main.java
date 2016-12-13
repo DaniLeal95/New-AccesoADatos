@@ -1,0 +1,181 @@
+/*
+ 
+ Solicitar usuario y contraseña
+ Ofrecer un menu con las opciones :
+  Insertar sorteo
+  Insertar boleto
+  Generar boleto
+  Comprobar si boleto premiado
+  
+  
+  Pseudocodigo
+  	Inicio
+  		desea entrar en el programa
+  		mientras(desee entrar)
+  			solicitar y leer usuario y contraseña
+  			comprobar usuario en BD
+  			si(usuario NO existe)
+  			sino
+	  			repetir()
+	  				Mostrar y validar menu gestor
+	  				segun(opcion)
+						caso 1: Insertar boleto
+						caso 2: Generar boleto
+						caso 3: Comprobar si boleto premiado
+						caso 4: Insertar sorteo
+							si(usuario y contraseña NO gestorBD)
+								Denegar acceso
+							sino
+								Insertar sorteo
+				mientras(desea realizar otra accion)
+				
+			 fin if
+				Indicar usuario o contraseña incorrectos
+  		desea continuar en el programa
+  		fin mientras(desee entrar)
+  	Fin
+  
+  Necesito una tabla de usuarios, contraseñas y categoria para saber quien es gerente o empleado 
+ 
+ */
+
+package Main;
+
+
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Scanner;
+
+import Clases.Conexion;
+import Gestion.gestLaPrimitiva;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		gestLaPrimitiva gestor = new gestLaPrimitiva();//objeto CLASE GESTION
+		String user = "";
+		String password = "";
+		char entrar = ' ';
+		Scanner teclado = new Scanner(System.in);
+		String tipoUsuario = "";//Gerente o Empleado
+		boolean usuExiste= false;//existe el usuario?
+		Conexion conexionLocal = new Conexion();
+		Statement sentencia = null;
+		int opcion = 0;
+		
+		java.sql.Timestamp fecha = null; //equivale a SMALLDATETIME de mi BD 
+		//desea entrar en el programa?
+		do{
+		System.out.println("Desea entrar? s/n");
+		entrar = Character.toLowerCase(teclado.next().charAt(0));
+		}while(entrar!='s' && entrar!='n');
+		
+		//mientras(desee entrar)
+		while(entrar=='s'){
+			//solicitar y leer usuario y contraseña
+			System.out.println("Usuario: ");
+			user = teclado.next();
+			
+			System.out.println("Contraseña: ");
+			password = teclado.next();
+			
+			try {
+				//conecto con la BD
+				conexionLocal = new Conexion(user,password);
+				sentencia = conexionLocal.conectarBD();
+				
+				//verificar usuario en BD
+					//devolvera usuario, contraseña y tipoUsuario (array)
+				//si usuario y contraseña correctos
+				usuExiste=true; //esto se cambia cuando implemente los usuarios
+				if(usuExiste==false){System.out.println("Usuario erroneo");}
+				else{
+					do{
+/*		  				Mostrar y validar menu gestor
+		  				segun(opcion)
+							caso 1: GenerarInsertar boleto
+							caso 2: Insertar boleto
+							caso 3: Comprobar si boleto premiado
+							caso 4: Insertar sorteo
+								si(usuario y contraseña NO gestorBD)
+									Denegar acceso
+								sino
+									Insertar sorteo*/
+						
+						//Mostrar y validar menu gestor
+						do{
+							opcion=4;
+							tipoUsuario="Gerente";
+						}while(opcion<1 || opcion>4);
+						
+						switch(opcion){
+						case 1: //GenerarInsertar boleto
+
+					        Calendar calendar= Calendar.getInstance();
+					        calendar.set(2016, 11, 28, 0, 0, 0);//a.set(2016 + 1900, 11, 30, 0, 0, 0); //  MESES EMPIEZA EN 0, asi que 11 es diciembre
+					        java.sql.Timestamp fechaBoleto = new java.sql.Timestamp(calendar.getTimeInMillis());					        
+							gestor.insertarBoleto(sentencia, fechaBoleto);
+							
+							break;
+						case 2: //Insertar boleto
+							break;
+						case 3: //Comprobar si boleto premiado
+							break;
+						case 4: //Insertar sorteo
+						
+							if(tipoUsuario=="Gerente"){
+								Calendar calendarB = Calendar.getInstance();
+								calendarB.set(2017,0,28, 0, 0, 0); //el segundo 0 es enero
+								
+						        java.sql.Timestamp fechaSorteo = new java.sql.Timestamp(calendarB.getTimeInMillis());
+						        
+								//Parametros: sentencia,java.sql.Timestamp fechaSorteo,int num1, int num2, int num3, int num4, int num5,int num6, int complementario, int reintegro
+								gestor.insertarSorteo(sentencia,fechaSorteo,2, 5, 13, 14, 27,36, 15, 6 );
+							
+							}else{
+								System.out.println("Su usuario NO tiene permitido INSERTAR SORTEO");
+							}
+							break;
+						}
+						
+						System.out.println("Desea realizar  otra accion? s/n");
+						entrar = Character.toLowerCase(teclado.next().charAt(0));
+					}while(entrar=='s');
+				}
+
+			}catch (ParseException e){	
+				e.printStackTrace();
+				System.out.println("Revisa el formato de fecha del sorteo");
+		//	}catch (SQLException e){
+			//	e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				
+				try {
+					sentencia.close();
+					conexionLocal.desConectarBD();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			System.out.println("Desea continuar en el programa? s/n");
+			entrar = Character.toLowerCase(teclado.next().charAt(0));
+		}//fin mientras(desee entrar)
+		
+		
+		
+
+
+		
+		
+	}
+
+}
