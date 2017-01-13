@@ -1,13 +1,16 @@
 package Principal;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import modelloteria.Boletos;
 import modelloteria.Sorteo;
 import modelloteria.SorteoFactory;
 
@@ -37,8 +40,28 @@ public class Principal {
 	                short complementario = 9;
 	                Sorteo s=new Sorteo(fecha,reintegro,complementario);
 	                
+	                
+	                //CREO UN BOLETO
+	              //Creamos boletos
+	                Calendar c2 = GregorianCalendar.getInstance();
+	                c2.set(2016, 12-1, 20);
+	                Timestamp fecha2 = new Timestamp(c2.getTimeInMillis());
+	                short a=6;
+	                short b=7;
+	                
+                	Boletos boleto = new Boletos(s.getId_sorteo(),fecha2,a,b,0.0);
+	                
+                	
+                	 //Creamos un List con el boleto
+	                
+                	List<Boletos> boletos =  new ArrayList<Boletos>();
+                	boletos.add(boleto);
+                	
+                	//Le añadimos al sorteo los boletos
+                	
+                	s.setBoletos(boletos);
 	                //Guardando
-	                //session.save(employe);
+	               
 	                session.save(s);
 	                
 	                tx.commit();

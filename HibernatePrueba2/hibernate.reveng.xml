@@ -3,4 +3,5 @@
 
 <hibernate-reverse-engineering>
   <table-filter match-catalog="Loteria" match-schema="dbo" match-name="Sorteos"/>
+  <table-filter match-catalog="Loteria" match-schema="dbo" match-name="Boletos"/>
 </hibernate-reverse-engineering>

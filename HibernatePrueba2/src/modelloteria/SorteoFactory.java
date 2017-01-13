@@ -15,6 +15,7 @@ Configuration configuration=new Configuration()
             .configure("hibernate.cfg.xml"); // configures settings from hibernate.cfg.xml
 
 	configuration.addAnnotatedClass(Sorteo.class);
+	configuration.addAnnotatedClass(Boletos.class);
     StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 
     // If you miss the below line then it will complaing about a missing dialect setting
