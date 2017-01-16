@@ -95,17 +95,25 @@ public class Boletos {
 			
             //StoredProcedureQuery query = session.("nuevoIDBoleto")
             
-            session.doWork( new Work() {
+            Query query = session.createQuery("{? = call dbo.nuevoIDBoleto(?)}").setParameter(2, idsorteo);
+            query.executeUpdate();
+            idsorteo = (int) query.getParameterValue(1);
+            
+            
+            /* session.doWork( new Work() {
 				
 				@Override
 				public void execute(Connection arg0) throws SQLException {
+					
 					CallableStatement callable = arg0.prepareCall("{? = call dbo.nuevoIDBoleto(?)}");
 					callable.registerOutParameter( 1, Types.INTEGER );
 			        callable.setInt(2,idsorteo);
 			        callable.execute();
 			        id_boleto = callable.getInt(1);
 				}
-			});
+			});*/
+            session.close();
+            //sessionFactory.close();
 			
 
 		}
