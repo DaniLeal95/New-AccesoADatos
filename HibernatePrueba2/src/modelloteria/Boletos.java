@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -32,6 +34,8 @@ public class Boletos {
 		private short numeros_jugados;
 		@Column(name="Premio")
 		private double premio;
+		@Column(name="id_sorteo")
+		private int id_sorteo;
 	//Fin Propiedades
 	
 		
@@ -41,6 +45,7 @@ public class Boletos {
 			
 		}
 		public Boletos(int idsorteo, Timestamp fecha_compra, short reintegro, short numeros_jugados, double premio) {
+			this.id_sorteo=idsorteo;
 			this.obtenerID(idsorteo);
 			this.fecha_compra = fecha_compra;
 			this.reintegro = reintegro;
@@ -89,31 +94,27 @@ public class Boletos {
 		//Metodos
 		private void obtenerID(int idsorteo){
 			
-		
+			
 			SessionFactory sessionFactory = SorteoFactory.getSessionFactory();
             Session session = sessionFactory.openSession();
 			
             //StoredProcedureQuery query = session.("nuevoIDBoleto")
             
-            Query query = session.createQuery("{? = call dbo.nuevoIDBoleto(?)}").setParameter(2, idsorteo);
-            query.executeUpdate();
-            idsorteo = (int) query.getParameterValue(1);
+            //Query query = session.createQuery("select id_boleto from Boletos where id_sorteo=:idsorteo order by id_boleto desc").setParameter("idsorteo",1);
+            //Query query = session.createNativeQuery("execute dbo.nuevoIDBoleto (?)").setParameter(1, 1);
+            Query query = session.createNativeQuery("select dbo.nuevoIDBoleto (?)").setParameter(1, 1);
+            //System.out.println(query.getSingleResult());
+            //set @id_boleto=dbo.nuevoIDBoleto(@Sorteo) 
+            
+            //System.out.println(query.toString());
+            id_boleto = (int)query.getSingleResult();
+            //System.out.println();
+            
+            //List<?> resultado = query.getResultList();
             
             
-            /* session.doWork( new Work() {
-				
-				@Override
-				public void execute(Connection arg0) throws SQLException {
-					
-					CallableStatement callable = arg0.prepareCall("{? = call dbo.nuevoIDBoleto(?)}");
-					callable.registerOutParameter( 1, Types.INTEGER );
-			        callable.setInt(2,idsorteo);
-			        callable.execute();
-			        id_boleto = callable.getInt(1);
-				}
-			});*/
+          
             session.close();
-            //sessionFactory.close();
 			
 
 		}

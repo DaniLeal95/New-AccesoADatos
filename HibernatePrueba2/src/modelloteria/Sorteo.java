@@ -21,7 +21,7 @@ public class Sorteo {
 	private short reintegro;
 	@Column(name="complementario")
 	private short complementario;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Boletos> boletos;
 	
 	
