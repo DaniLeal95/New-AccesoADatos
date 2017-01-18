@@ -34,8 +34,14 @@ public class Boletos {
 		private short numeros_jugados;
 		@Column(name="Premio")
 		private double premio;
-		@Column(name="id_sorteo")
-		private int id_sorteo;
+		
+		@ManyToOne
+	    @JoinColumn(name = "id_sorteo",
+	            foreignKey = @ForeignKey(name = "id_sorteo_FK_Sorteos")
+	    )
+		private Sorteo sorteo;
+		
+
 	//Fin Propiedades
 	
 		
@@ -45,7 +51,7 @@ public class Boletos {
 			
 		}
 		public Boletos(int idsorteo, Timestamp fecha_compra, short reintegro, short numeros_jugados, double premio) {
-			this.id_sorteo=idsorteo;
+			
 			this.obtenerID(idsorteo);
 			this.fecha_compra = fecha_compra;
 			this.reintegro = reintegro;
@@ -57,6 +63,13 @@ public class Boletos {
 		
 	//Getters&Setters
 
+		public Sorteo getSorteo(){
+			return this.sorteo;
+		}
+		public void setSorteo(Sorteo sorteo){
+			this.sorteo=sorteo;
+		}
+		
 		public Timestamp getFecha_compra() {
 			return fecha_compra;
 		}
@@ -103,10 +116,8 @@ public class Boletos {
             //Query query = session.createQuery("select id_boleto from Boletos where id_sorteo=:idsorteo order by id_boleto desc").setParameter("idsorteo",1);
             //Query query = session.createNativeQuery("execute dbo.nuevoIDBoleto (?)").setParameter(1, 1);
             Query query = session.createNativeQuery("select dbo.nuevoIDBoleto (?)").setParameter(1, 1);
-            //System.out.println(query.getSingleResult());
-            //set @id_boleto=dbo.nuevoIDBoleto(@Sorteo) 
-            
-            //System.out.println(query.toString());
+
+
             id_boleto = (int)query.getSingleResult();
             //System.out.println();
             

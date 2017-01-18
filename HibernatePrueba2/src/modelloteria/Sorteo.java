@@ -1,6 +1,7 @@
 package modelloteria;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -21,7 +22,8 @@ public class Sorteo {
 	private short reintegro;
 	@Column(name="complementario")
 	private short complementario;
-	//@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Boletos> boletos;
 	
 	
@@ -36,12 +38,6 @@ public class Sorteo {
 		complementario=-1;
 	}
 
-	public List<Boletos> getBoletos() {
-		return boletos;
-	}
-	public void setBoletos(List<Boletos> boletos) {
-		this.boletos = boletos;
-	}
 	
 	public int getId_sorteo() {
 		return id_sorteo;
@@ -72,5 +68,11 @@ public class Sorteo {
 		this.complementario = complementario;
 	}
 	
+	public long numeroDeBoletos(){
+		long totalBoletos = 0;
+		
+		totalBoletos=this.boletos.size();
+		return totalBoletos;
+	}
 	
 }
