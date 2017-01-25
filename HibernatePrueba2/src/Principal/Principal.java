@@ -39,10 +39,21 @@ public class Principal {
 	                short complementario = 9;
 	                Sorteo s=new Sorteo(fecha,reintegro,complementario);*/
 	                
-	                Query query = session.createNativeQuery("select * from Sorteos where id_sorteo=?").setParameter(1, 1);
-	                Sorteo s = (Sorteo)query.getSingleResult();
+	                Sorteo s= (Sorteo)session.get(Sorteo.class,1);
+	                s.numeroDeBoletos();
 	                
-	                System.out.println(s.numeroDeBoletos());
+	                Boletos b= (Boletos)session.get(Boletos.class, 1);
+	                
+	                for(int i = 0;i<b.getnumBoletos().size();i++){
+	                	System.out.println(b.getnumBoletos().get(i).getNumero());
+	                }
+	                
+	                //Boletos b = (Boletos) session.get(Boletos.class, 1);
+	                //System.out.println(b.getSorteo().getReintegro());
+	                //Query query = session.createNativeQuery("select * from Sorteos where id_sorteo=?").setParameter(1, 1);
+	                //Sorteo s = (Sorteo)query.Ge();
+	                
+	               // System.out.println(s.numeroDeBoletos());
 	                //CREO UN BOLETO
 	              //Creamos boletos
 	              /*  Calendar c2 = GregorianCalendar.getInstance();
@@ -56,7 +67,7 @@ public class Principal {
 	                
 	                //Guardando
 	               
-	                session.save(s);
+	                //session.save(s);
 	                
 	                tx.commit();
 	                System.out.println("Finalizado...");

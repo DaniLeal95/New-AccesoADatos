@@ -16,6 +16,8 @@ Configuration configuration=new Configuration()
 
 	configuration.addAnnotatedClass(Sorteo.class);
 	configuration.addAnnotatedClass(Boletos.class);
+	configuration.addAnnotatedClass(NumerosSorteos.class);
+	configuration.addAnnotatedClass(NumerosBoletos.class);
     StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 
     // If you miss the below line then it will complaing about a missing dialect setting

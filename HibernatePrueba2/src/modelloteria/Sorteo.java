@@ -23,10 +23,21 @@ public class Sorteo {
 	@Column(name="complementario")
 	private short complementario;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="num_sorteo",cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Boletos> boletos;
 	
+	@OneToMany(mappedBy="sorteo",cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<NumerosSorteos> numerosSorteos;
 	
+	public List<Boletos> getBoletos() {
+		return boletos;
+	}
+	public void setBoletos(List<Boletos> boletos) {
+		this.boletos = boletos;
+	}
+	public void setId_sorteo(int id_sorteo) {
+		this.id_sorteo = id_sorteo;
+	}
 	public Sorteo (Timestamp fecha_sorteo,short reintegro,short complementario){
 		this.fecha_sorteo=fecha_sorteo;
 		this.reintegro=reintegro;
@@ -68,10 +79,16 @@ public class Sorteo {
 		this.complementario = complementario;
 	}
 	
+	public List<NumerosSorteos> getNumerosSorteos(){
+		return this.getNumerosSorteos();
+	}
+	
 	public long numeroDeBoletos(){
 		long totalBoletos = 0;
 		
-		totalBoletos=this.boletos.size();
+		for (int i =0;i<boletos.size();i++){
+			System.out.println(boletos.get(i).toString());
+		}
 		return totalBoletos;
 	}
 	

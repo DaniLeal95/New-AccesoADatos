@@ -39,7 +39,12 @@ public class Boletos {
 	    @JoinColumn(name = "id_sorteo",
 	            foreignKey = @ForeignKey(name = "id_sorteo_FK_Sorteos")
 	    )
-		private Sorteo sorteo;
+		private Sorteo num_sorteo;
+		
+		@OneToMany(mappedBy="num_boleto",cascade = CascadeType.ALL, orphanRemoval = true)
+		private List<NumerosBoletos> numerosboletos;
+		
+		
 		
 
 	//Fin Propiedades
@@ -64,10 +69,10 @@ public class Boletos {
 	//Getters&Setters
 
 		public Sorteo getSorteo(){
-			return this.sorteo;
+			return this.num_sorteo;
 		}
 		public void setSorteo(Sorteo sorteo){
-			this.sorteo=sorteo;
+			this.num_sorteo=sorteo;
 		}
 		
 		public Timestamp getFecha_compra() {
@@ -100,6 +105,10 @@ public class Boletos {
 	
 		public void setPremio(double premio) {
 			this.premio = premio;
+		}
+		
+		public List<NumerosBoletos> getnumBoletos(){
+			return this.numerosboletos;
 		}
 		
 	//Fin Getters&Setters
