@@ -91,5 +91,11 @@ public class Sorteo {
 		}
 		return totalBoletos;
 	}
+	@Override
+	public String toString() {
+		return "Sorteo [id_sorteo=" + id_sorteo + ", fecha_sorteo=" + fecha_sorteo + "]";
+	}
+	
+	
 	
 }
