@@ -15,14 +15,14 @@ public class Funcionalidades {
 	
 	
 	//Recoge Todos los sorteos
-	public List<Sorteo> getSorteos(){
+	public List<Sorteo> getSorteosDisponibles(){
 		Session session = null;
 		List<Sorteo> sorteos = null;
 		try{
 			sessionFactory = SorteoFactory.getSessionFactory();
             session = sessionFactory.openSession();
 			
-            Query query = session.createNativeQuery("Select * from Sorteos",Sorteo.class);
+            Query query = session.createNativeQuery("select * from Sorteos where fecha_sorteo>GETDATE()",Sorteo.class);
             
             sorteos = query.getResultList();
 		}catch (Exception e) {
@@ -31,4 +31,22 @@ public class Funcionalidades {
 		
 		return sorteos;
 	}
+	public List<Sorteo> getSorteosAntiguos(){
+		Session session = null;
+		List<Sorteo> sorteos = null;
+		try{
+			sessionFactory = SorteoFactory.getSessionFactory();
+            session = sessionFactory.openSession();
+			
+            Query query = session.createNativeQuery("select * from Sorteos where fecha_sorteo<GETDATE()",Sorteo.class);
+            
+            sorteos = query.getResultList();
+		}catch (Exception e) {
+			
+		}
+		
+		return sorteos;
+	}
+	
+	
 }

@@ -111,6 +111,10 @@ public class Boletos {
 			return this.numerosboletos;
 		}
 		
+		
+		public int getIdBoleto(){
+			return this.id_boleto;
+		}
 	//Fin Getters&Setters
 
 		//Metodos
@@ -137,6 +141,11 @@ public class Boletos {
             session.close();
 			
 
+		}
+		@Override
+		public String toString() {
+			return "Boletos [id_boleto=" + id_boleto + ", fecha_compra=" + fecha_compra + ", reintegro=" + reintegro
+					+ ", premio=" + premio + ", num_sorteo=" + num_sorteo + "]";
 		}
 	
 	

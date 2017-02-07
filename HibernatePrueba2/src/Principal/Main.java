@@ -74,11 +74,11 @@ public class Main {
 		//declaramos e instanciamos un objeto de funcionalidades
 		Funcionalidades f = new Funcionalidades();
 		//recogemos todos los sorteos
-		List<Sorteo> sorteos = f.getSorteos();
+		//List<Sorteo> sorteos = f.getSorteos();
 		
-		for(int i=0;i<sorteos.size();i++){
-			listmodel.addElement(sorteos.get(i).toString());
-		}
+		//for(int i=0;i<sorteos.size();i++){
+		//	listmodel.addElement(sorteos.get(i).toString());
+	//	}
 		
 		list.setModel(listmodel);
 		panel.add(list);
