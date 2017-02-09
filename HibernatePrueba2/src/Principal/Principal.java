@@ -144,7 +144,7 @@ public class Principal {
 								int numero;
 								//Pedimos el numero
 								do{
-									System.out.println("Introduce el numero"+i+" .Recuerda que debe estar entre 1 y 49");
+									System.out.println("Introduce el numero"+i+1+" .Recuerda que debe estar entre 1 y 49");
 									numero=Integer.parseInt(sc.nextLine());
 								}while(numero<1 && numero>49);
 								
@@ -177,6 +177,92 @@ public class Principal {
 						}
 						//Si el usuario quiere insertar un boleto multiple
 						else{
+							
+							//primero preguntamos de cuantos numeros quiere el boleto
+							int numainsertar;
+							do{
+								
+								System.out.println("De cuantos numeros quieres el boleto?");
+								System.out.println("Recuerda solo :5,7,8,9,10 o 11");
+								numainsertar=Integer.parseInt(sc.nextLine());
+							}while(numainsertar<5 || numainsertar==6 || numainsertar>11);
+							
+							int numero1=0,numero2=0,numero3=0,numero4=0,numero5=0,numero6=0,numero7=0,numero8=0,numero9=0;
+							int numero10=0,numero11=0;
+							
+							
+							//Para pedir los numeros segun la cantidad que quiera el usuario
+							for (int i = 0; i<numainsertar;i++){
+								int numero;
+								//Pedimos el numero
+								do{
+									System.out.println("Introduce el numero"+(i+1)+" .Recuerda que debe estar entre 1 y 49");
+									numero=Integer.parseInt(sc.nextLine());
+								}while(numero<1 && numero>49);
+								
+								//Segun el numero por el que vayamos
+								switch (i) {
+								case 0:	
+									numero1 = numero;
+									break;
+								case 1:
+									numero2=numero;
+									break;
+								case 2:
+									numero3=numero;
+									break;
+								case 3:
+									numero4=numero;
+									break;
+								case 4:
+									numero5=numero;
+									break;
+								case 5:
+									numero6=numero;
+									break;
+								case 6:
+									numero7=numero;
+									break;
+								case 7:
+									numero8=numero;
+									break;
+								case 8:
+									numero9=numero;
+									break;
+								case 9:
+									numero10=numero;
+									break;
+								case 10:
+									numero11=numero;
+									break;
+								case 11:
+									numero6=numero;
+									break;
+								
+								
+								}
+							}
+							
+							switch (numainsertar) {
+							case 5:	
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5);
+								break;
+							case 7:
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5,numero6,numero7);
+								break;
+							case 8:
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5,numero6,numero7,numero8);
+								break;
+							case 9:
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5,numero6,numero7,numero8,numero9);
+								break;
+							case 10:
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5,numero6,numero7,numero8,numero9,numero10);
+								break;
+							case 11:
+								f.insertBoletoMultiple(s.getId_sorteo(), numero1,numero2,numero3,numero4,numero5,numero6,numero7,numero8,numero9,numero10,numero11);
+								break;
+							}
 							
 						}
 						
