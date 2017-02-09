@@ -29,6 +29,8 @@ public class Principal {
 		Funcionalidades f = new Funcionalidades();
 		Scanner sc = new Scanner(System.in); 
 		List<Sorteo> sorteos =null;
+		Sorteo s=null;
+		Boletos b= null;
 	    
 	         //Pintamos menu y leemos opcion de menu
 	         do{
@@ -45,9 +47,9 @@ public class Principal {
 	    	         
 	    	         //Segun Opcion
 	    	         switch (opcionmenu) {
+	    	         //CASO DE QUE DESEE COMPROBAR UN BOLETO
 					case 1:
-						Sorteo s=null;
-						Boletos b= null;
+						
 						sorteos = f.getSorteosAntiguos();
 						
 						boolean idsorteovalido=false;
@@ -95,6 +97,8 @@ public class Principal {
 						
 						break;
 
+						
+						//CASO DE QUE DESEE INSERTAR UN NUVO BOLETO
 					case 2:
 						
 						sorteos = f.getSorteosDisponibles();
@@ -132,6 +136,49 @@ public class Principal {
 							respuesta =Character.toUpperCase(sc.nextLine().charAt(0));
 						}while(respuesta != 'M' && respuesta!= 'S');
 						
+						//Si el usuario quiere insertar un boleto simple
+						if(respuesta == 'S'){
+							int numero1=0,numero2=0,numero3=0,numero4=0,numero5=0,numero6=0;
+							
+							for (int i = 0; i<6;i++){
+								int numero;
+								//Pedimos el numero
+								do{
+									System.out.println("Introduce el numero"+i+" .Recuerda que debe estar entre 1 y 49");
+									numero=Integer.parseInt(sc.nextLine());
+								}while(numero<1 && numero>49);
+								
+								//Segun el numero por el que vayamos
+								switch (i) {
+								case 0:	
+									numero1 = numero;
+									break;
+								case 1:
+									numero2=numero;
+									break;
+								case 2:
+									numero3=numero;
+									break;
+								case 3:
+									numero4=numero;
+									break;
+								case 4:
+									numero5=numero;
+									break;
+								case 5:
+									numero6=numero;
+									break;
+								}
+								
+							}
+							
+							f.insertBoletoSimple(s.getId_sorteo(), numero1, numero2, numero3, numero4, numero5, numero6);							
+							
+						}
+						//Si el usuario quiere insertar un boleto multiple
+						else{
+							
+						}
 						
 						break;
 					}

@@ -49,4 +49,28 @@ public class Funcionalidades {
 	}
 	
 	
+	public void insertBoletoSimple(int idsorteo,int numero1,int numero2,int numero3,int numero4,int numero5,int numero6){
+		
+		Session session = null;
+		List<Sorteo> sorteos = null;
+		try{
+			sessionFactory = SorteoFactory.getSessionFactory();
+            session = sessionFactory.openSession();
+			
+            session.createNativeQuery("execute dbo.GrabaSencilla ?,?,?,?,?,?,?")
+            		.setParameter(1, idsorteo)
+            		.setParameter(2, numero1)
+            		.setParameter(3, numero2)
+            		.setParameter(4, numero3)
+            		.setParameter(5, numero4)
+            		.setParameter(6, numero5)
+            		.setParameter(7, numero6);
+
+
+		}catch (Exception e) {
+			System.out.println(e.toString());
+		}
+		
+		
+	}
 }
