@@ -145,7 +145,8 @@ public class Boletos {
 		@Override
 		public String toString() {
 			return "Boletos [id_boleto=" + id_boleto + ", fecha_compra=" + fecha_compra + ", reintegro=" + reintegro
-					+ ", premio=" + premio + ", num_sorteo=" + num_sorteo + "]";
+					+ ", premio=" + premio + ", num_sorteo=" + num_sorteo + "]"
+							+ "numeros :"+numerosboletos.toString();
 		}
 	
 	

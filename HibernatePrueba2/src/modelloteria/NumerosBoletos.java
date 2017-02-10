@@ -44,6 +44,11 @@ public class NumerosBoletos {
 		return sorteo;
 	}
 
+	@Override
+	public String toString() {
+		return  "\n"+numero+"" ;
+	}
+
 
 
 
