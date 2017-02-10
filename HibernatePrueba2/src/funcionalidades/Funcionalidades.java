@@ -70,15 +70,7 @@ public class Funcionalidades {
             		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
             		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
             		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
-            		
-            		/*2procedureCall.getParameterRegistration("idsorteo");
-            		procedureCall.getParameterRegistration("num1");
-            		procedureCall.getParameterRegistration("num2");
-            		procedureCall.getParameterRegistration("num3");
-            		procedureCall.getParameterRegistration("num4");
-            		procedureCall.getParameterRegistration("num5");
-            		procedureCall.getParameterRegistration("num6");*/
-            		
+
             		
             
 		}catch (Exception e) {
@@ -123,69 +115,74 @@ public void insertBoletoMultiple(int idsorteo,int... numeros){
                 		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
                 		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
                 		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
+                		procedureCall.registerParameter(8,Integer.class, ParameterMode.IN).bindValue(numero7);
             	
             	
             	break;
             case 8:
             	numero6=numeros[5];numero7=numeros[6];numero8=numeros[7];
-            	session.createNativeQuery("execute dbo.GrabaMultiple ?,?,?,?,?,?,?,?,?")
-        		.setParameter(1, idsorteo)
-        		.setParameter(2, numero1)
-        		.setParameter(3, numero2)
-        		.setParameter(4, numero3)
-        		.setParameter(5, numero4)
-        		.setParameter(6, numero5)
-        		.setParameter(7, numero6)
-            	.setParameter(8, numero7)
-            	.setParameter(9, numero8);
+            	procedureCall=
+                        session.createStoredProcedureCall("dbo.GrabaMultiple");
+                    	procedureCall.registerParameter(1,Integer.class, ParameterMode.IN).bindValue(idsorteo);
+                		procedureCall.registerParameter(2,Integer.class, ParameterMode.IN).bindValue(numero1);
+                		procedureCall.registerParameter(3,Integer.class, ParameterMode.IN).bindValue(numero2);
+                		procedureCall.registerParameter(4,Integer.class, ParameterMode.IN).bindValue(numero3);
+                		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
+                		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
+                		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
+                		procedureCall.registerParameter(8,Integer.class, ParameterMode.IN).bindValue(numero7);
+                		procedureCall.registerParameter(9,Integer.class, ParameterMode.IN).bindValue(numero8);
 
             	break;
             case 9:
             	
             	numero6=numeros[5];numero7=numeros[6];numero8=numeros[7];numero9=numeros[8];
-            	session.createNativeQuery("execute dbo.GrabaMultiple ?,?,?,?,?,?,?,?,?,?")
-        		.setParameter(1, idsorteo)
-        		.setParameter(2, numero1)
-        		.setParameter(3, numero2)
-        		.setParameter(4, numero3)
-        		.setParameter(5, numero4)
-        		.setParameter(6, numero5)
-        		.setParameter(7, numero6)
-            	.setParameter(8, numero7)
-            	.setParameter(9, numero8)
-            	.setParameter(10, numero9);
+            	procedureCall=
+                        session.createStoredProcedureCall("dbo.GrabaMultiple");
+                    	procedureCall.registerParameter(1,Integer.class, ParameterMode.IN).bindValue(idsorteo);
+                		procedureCall.registerParameter(2,Integer.class, ParameterMode.IN).bindValue(numero1);
+                		procedureCall.registerParameter(3,Integer.class, ParameterMode.IN).bindValue(numero2);
+                		procedureCall.registerParameter(4,Integer.class, ParameterMode.IN).bindValue(numero3);
+                		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
+                		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
+                		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
+                		procedureCall.registerParameter(8,Integer.class, ParameterMode.IN).bindValue(numero7);
+                		procedureCall.registerParameter(9,Integer.class, ParameterMode.IN).bindValue(numero8);
+                		procedureCall.registerParameter(10,Integer.class, ParameterMode.IN).bindValue(numero9);
             	break;
             case 10:
             	numero6=numeros[5];numero7=numeros[6];numero8=numeros[7];numero9=numeros[8];numero10=numeros[9];
-            	session.createNativeQuery("execute dbo.GrabaMultiple ?,?,?,?,?,?,?,?,?,?,?")
-        		.setParameter(1, idsorteo)
-        		.setParameter(2, numero1)
-        		.setParameter(3, numero2)
-        		.setParameter(4, numero3)
-        		.setParameter(5, numero4)
-        		.setParameter(6, numero5)
-        		.setParameter(7, numero6)
-            	.setParameter(8, numero7)
-            	.setParameter(9, numero8)
-            	.setParameter(10, numero9)
-            	.setParameter(11, numero10);
+               	procedureCall=
+                        session.createStoredProcedureCall("dbo.GrabaMultiple");
+                    	procedureCall.registerParameter(1,Integer.class, ParameterMode.IN).bindValue(idsorteo);
+                		procedureCall.registerParameter(2,Integer.class, ParameterMode.IN).bindValue(numero1);
+                		procedureCall.registerParameter(3,Integer.class, ParameterMode.IN).bindValue(numero2);
+                		procedureCall.registerParameter(4,Integer.class, ParameterMode.IN).bindValue(numero3);
+                		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
+                		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
+                		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
+                		procedureCall.registerParameter(8,Integer.class, ParameterMode.IN).bindValue(numero7);
+                		procedureCall.registerParameter(9,Integer.class, ParameterMode.IN).bindValue(numero8);
+                		procedureCall.registerParameter(10,Integer.class, ParameterMode.IN).bindValue(numero9);
+                		procedureCall.registerParameter(11,Integer.class, ParameterMode.IN).bindValue(numero10);
             	
             	break;
             case 11:
             	numero6=numeros[5];numero7=numeros[6];numero8=numeros[7];numero9=numeros[8];numero10=numeros[9];numero11=numeros[10];
-            	session.createNativeQuery("execute dbo.GrabaMultiple ?,?,?,?,?,?,?,?,?,?,?,?")
-        		.setParameter(1, idsorteo)
-        		.setParameter(2, numero1)
-        		.setParameter(3, numero2)
-        		.setParameter(4, numero3)
-        		.setParameter(5, numero4)
-        		.setParameter(6, numero5)
-        		.setParameter(7, numero6)
-            	.setParameter(8, numero7)
-            	.setParameter(9, numero8)
-            	.setParameter(10, numero9)
-            	.setParameter(11, numero10)
-            	.setParameter(12, numero11);
+            	procedureCall=
+                        session.createStoredProcedureCall("dbo.GrabaMultiple");
+                    	procedureCall.registerParameter(1,Integer.class, ParameterMode.IN).bindValue(idsorteo);
+                		procedureCall.registerParameter(2,Integer.class, ParameterMode.IN).bindValue(numero1);
+                		procedureCall.registerParameter(3,Integer.class, ParameterMode.IN).bindValue(numero2);
+                		procedureCall.registerParameter(4,Integer.class, ParameterMode.IN).bindValue(numero3);
+                		procedureCall.registerParameter(5,Integer.class, ParameterMode.IN).bindValue(numero4);
+                		procedureCall.registerParameter(6,Integer.class, ParameterMode.IN).bindValue(numero5);
+                		procedureCall.registerParameter(7,Integer.class, ParameterMode.IN).bindValue(numero6);
+                		procedureCall.registerParameter(8,Integer.class, ParameterMode.IN).bindValue(numero7);
+                		procedureCall.registerParameter(9,Integer.class, ParameterMode.IN).bindValue(numero8);
+                		procedureCall.registerParameter(10,Integer.class, ParameterMode.IN).bindValue(numero9);
+                		procedureCall.registerParameter(11,Integer.class, ParameterMode.IN).bindValue(numero10);
+                		procedureCall.registerParameter(12,Integer.class, ParameterMode.IN).bindValue(numero11);
             	
             	break;
             }
